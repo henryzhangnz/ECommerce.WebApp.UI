@@ -1,8 +1,6 @@
 <div class="row">
   <div class="col-5">
-    <app-product-search
-      (searchChanged)="onSearchChanged($event)"
-    ></app-product-search>
+    <app-product-search></app-product-search>
   </div>
   <div class="col-1">
     <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
@@ -30,10 +28,5 @@
     </ng-container>
   </div>
 
-  <app-product-pagination
-    [currentPage]="currentPage"
-    [totalPages]="totalPages"
-    [pages]="pages"
-    (pageChanged)="goToPage($event)"
-  ></app-product-pagination>
+  <app-product-pagination></app-product-pagination>
 </div>

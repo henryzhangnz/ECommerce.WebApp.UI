@@ -31,9 +31,6 @@ export class ProductListComponent {
     amount: 0,
   };
   currentPage = 1;
-  totalPages = 1;
-  pageSize = 4;
-  pages: number[] = [];
   selectedSort: string = 'name-asc';
 
   sortOptions = [
@@ -49,17 +46,8 @@ export class ProductListComponent {
 
   ngOnInit() {
     this.productService.setQueryParams({ search: '', page: 1 });
-    // this.productService.products$.subscribe(
-    //   (products) => (this.products = products)
-    // );
-    // this.productService.totalItems$.subscribe((totalItems) => {
-    //   this.totalPages = Math.ceil(totalItems / this.pageSize);
-    //   this.calculatePages();
-    // });
     this.productService.productPaginated$.subscribe((productPaginated) => {
       this.products = productPaginated.products;
-      this.totalPages = Math.ceil(productPaginated.totalItems / this.pageSize);
-      this.calculatePages();
     });
   }
 
@@ -82,17 +70,5 @@ export class ProductListComponent {
 
   addProduct() {
     this.router.navigate(['/add-product']);
-  }
-
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.productService.setQueryParams({ page: this.currentPage });
-    }
-  }
-
-  calculatePages() {
-    const totalPages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    this.pages = totalPages;
   }
 }

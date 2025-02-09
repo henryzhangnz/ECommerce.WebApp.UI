@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-search',
@@ -8,10 +9,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-search.component.scss',
 })
 export class ProductSearchComponent {
+  constructor(private productService: ProductService) {}
+
   searchText: string = '';
-  @Output() searchChanged = new EventEmitter<string>();
 
   onSearchChange() {
-    this.searchChanged.emit(this.searchText);
+    this.productService.setQueryParams({
+      search: this.searchText,
+      page: 1,
+    });
   }
 }
