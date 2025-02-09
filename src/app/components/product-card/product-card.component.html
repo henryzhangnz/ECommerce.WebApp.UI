@@ -1,0 +1,29 @@
+<div class="col">
+  <div class="card h-100">
+    <img src="no-image.jpeg" class="card-img-top" alt="no-image" />
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text">{{ product.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${{ product.price }}</li>
+      <li class="list-group-item">Only {{ product.amount }} Left</li>
+    </ul>
+    <div class="card-body">
+      <button
+        type="button"
+        class="btn btn-primary me-2"
+        (click)="editProduct(product.id)"
+      >
+        Edit
+      </button>
+      <button
+        class="btn btn-danger"
+        type="button"
+        (click)="deleteProduct(product.id)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
