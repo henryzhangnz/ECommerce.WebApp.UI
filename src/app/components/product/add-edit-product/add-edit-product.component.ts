@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { nonEmptyStringValidator } from '../../Helpers/non-empty-string-validator';
+import { nonEmptyStringValidator } from '../../../Helpers/non-empty-string-validator';
 
 @Component({
   selector: 'app-add-edit-product',

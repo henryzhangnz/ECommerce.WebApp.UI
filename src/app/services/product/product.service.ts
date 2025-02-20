@@ -8,11 +8,11 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { Product } from '../interfaces/product';
-import { environment } from '../../environments/environment';
-import { ProductCreateDto } from '../interfaces/productCreateDto';
-import { QueryParameters } from '../interfaces/queryParameters';
-import { ProductPaginated } from '../interfaces/productPaginated';
+import { Product } from '../../interfaces/product';
+import { environment } from '../../../environments/environment';
+import { ProductCreateDto } from '../../interfaces/productCreateDto';
+import { QueryParameters } from '../../interfaces/queryParameters';
+import { ProductPaginated } from '../../interfaces/productPaginated';
 
 @Injectable({
   providedIn: 'root',
@@ -59,7 +59,8 @@ export class ProductService {
           `sortBy=${params.sortBy}&` +
           `isDescending=${params.isDescending}&` +
           `page=${params.page}&` +
-          `pageSize=${params.pageSize}`
+          `pageSize=${params.pageSize}`,
+        { withCredentials: true }
       )
       .pipe(
         tap((response) => {
@@ -76,12 +77,16 @@ export class ProductService {
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(this.baseUrl + `/api/v1/products/${id}`);
+    return this.http.get<Product>(this.baseUrl + `/api/v1/products/${id}`, {
+      withCredentials: true,
+    });
   }
 
   addProduct(product: ProductCreateDto) {
     return this.http
-      .post<Product>(this.baseUrl + '/api/v1/products', product)
+      .post<Product>(this.baseUrl + '/api/v1/products', product, {
+        withCredentials: true,
+      })
       .subscribe(() => {
         this.refreshProducts();
       });
@@ -89,7 +94,9 @@ export class ProductService {
 
   updateProduct(id: string, product: ProductCreateDto) {
     return this.http
-      .put<void>(this.baseUrl + `/api/v1/products/${id}`, product)
+      .put<void>(this.baseUrl + `/api/v1/products/${id}`, product, {
+        withCredentials: true,
+      })
       .subscribe(() => {
         this.refreshProducts();
       });
@@ -97,7 +104,9 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.http
-      .delete<void>(this.baseUrl + `/api/v1/products/${id}`)
+      .delete<void>(this.baseUrl + `/api/v1/products/${id}`, {
+        withCredentials: true,
+      })
       .subscribe(() => {
         this.refreshProducts();
       });

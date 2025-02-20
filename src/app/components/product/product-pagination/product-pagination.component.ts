@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../interfaces/product';
+import { ProductService } from '../../../services/product/product.service';
+import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'app-product-pagination',

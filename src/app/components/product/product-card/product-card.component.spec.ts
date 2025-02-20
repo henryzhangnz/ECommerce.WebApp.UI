@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductSearchComponent } from './product-search.component';
+import { ProductCardComponent } from './product-card.component';
+import { ProductService } from '../../../services/product/product.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ProductService } from '../../services/product.service';
 
-describe('ProductSearchComponent', () => {
-  let component: ProductSearchComponent;
-  let fixture: ComponentFixture<ProductSearchComponent>;
+describe('ProductCardComponent', () => {
+  let component: ProductCardComponent;
+  let fixture: ComponentFixture<ProductCardComponent>;
   let productServiceSpy: jasmine.SpyObj<ProductService>;
 
   beforeEach(async () => {
@@ -15,7 +15,7 @@ describe('ProductSearchComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      imports: [ProductSearchComponent],
+      imports: [ProductCardComponent],
       providers: [
         provideHttpClientTesting(),
         {
@@ -25,8 +25,18 @@ describe('ProductSearchComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProductSearchComponent);
+    fixture = TestBed.createComponent(ProductCardComponent);
     component = fixture.componentInstance;
+
+    component.product = {
+      id: '123',
+      name: 'test 1 name',
+      description: 'test 1 desc',
+      price: 10,
+      amount: 3,
+      createdAt: new Date(),
+    };
+
     fixture.detectChanges();
   });
 

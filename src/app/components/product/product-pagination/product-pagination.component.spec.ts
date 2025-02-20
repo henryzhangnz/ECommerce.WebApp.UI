@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductPaginationComponent } from './product-pagination.component';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { BehaviorSubject } from 'rxjs';
-import { ProductPaginated } from '../../interfaces/productPaginated';
+import { ProductPaginated } from '../../../interfaces/productPaginated';
 
 describe('ProductPaginationComponent', () => {
   let component: ProductPaginationComponent;

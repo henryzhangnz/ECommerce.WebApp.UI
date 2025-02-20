@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 
 @Component({
   selector: 'app-product-search',

@@ -1,0 +1,16 @@
+<button *ngIf="!user || user == null" (click)="login()" class="btn btn-primary">
+  Login
+</button>
+
+<div *ngIf="user" class="dropdown">
+  <button
+    class="btn btn-secondary dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+  >
+    {{ user.username }}
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+  </ul>
+</div>

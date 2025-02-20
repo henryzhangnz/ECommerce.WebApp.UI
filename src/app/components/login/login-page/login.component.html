@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-sm" style="width: 400px">
+    <h3 class="text-center mb-3">Login</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          formControlName="username"
+          [class.is-invalid]="isInputValid('username')"
+          required
+        />
+        <div class="text-danger" *ngIf="isInputValid('username')">
+          Username is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="isInputValid('password')"
+          required
+        />
+        <div class="text-danger" *ngIf="isInputValid('password')">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+        Login
+      </button>
+    </form>
+  </div>
+</div>

@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductListComponent } from './product-list.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { BehaviorSubject, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { ProductPaginated } from '../../interfaces/productPaginated';
-import { Product } from '../../interfaces/product';
+import { ProductPaginated } from '../../../interfaces/productPaginated';
+import { Product } from '../../../interfaces/product';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;

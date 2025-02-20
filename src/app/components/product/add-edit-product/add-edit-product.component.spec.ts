@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddEditProductComponent } from './add-edit-product.component';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { FormBuilder } from '@angular/forms';
