@@ -34,7 +34,6 @@ export class AuthService {
       })
       .subscribe({
         next: (user: UserDto) => {
-          console.log('User fetched:', user);
           this.userSubject.next(user);
         },
         error: () => {

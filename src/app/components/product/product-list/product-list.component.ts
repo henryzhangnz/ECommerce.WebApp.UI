@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Role } from '../../../interfaces/auth/role';
 import { LoginButtonComponent } from '../../login/login-button/login-button.component';
+import { OrderService } from '../../../services/order/order.service';
+import { Order } from '../../../interfaces/order/order';
 
 @Component({
   selector: 'app-product-list',
@@ -38,6 +40,7 @@ export class ProductListComponent {
   selectedSort: string = 'name-asc';
   userRole = Role;
   currentUserRole: Role = Role.NoRole;
+  order: Order | null = null;
 
   sortOptions = [
     { value: 'name-asc', label: 'Name A-Z' },
@@ -51,7 +54,8 @@ export class ProductListComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {
@@ -61,7 +65,11 @@ export class ProductListComponent {
     });
     this.authService.user$.subscribe((user) => {
       this.currentUserRole = user === null ? Role.NoRole : user.role;
+      if (user) {
+        this.orderService.getOrdersByCustomerId(user.id);
+      }
     });
+    this.orderService.order$.subscribe((order) => (this.order = order));
   }
 
   onSearchChanged(searchText: string) {
@@ -83,5 +91,9 @@ export class ProductListComponent {
 
   addProduct() {
     this.router.navigate(['/add-product']);
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart']);
   }
 }

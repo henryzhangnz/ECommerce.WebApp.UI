@@ -4,6 +4,21 @@
   </div>
   <div class="col-1">
     <button
+      type="button"
+      class="btn btn-primary position-relative border-0 bg-transparent"
+      (click)="goToCart()"
+    >
+      <img src="shopping-cart.png" width="35px" alt="shopping-cart" />
+      <span
+        *ngIf="order && order.totalItems > 0"
+        class="position-absolute top-0 start-80 translate-middle badge rounded-pill bg-danger"
+      >
+        {{ order.totalItems }}
+      </span>
+    </button>
+  </div>
+  <div class="col-1">
+    <button
       class="btn btn-primary"
       (click)="addProduct()"
       *ngIf="currentUserRole === userRole.Admin"

@@ -9,8 +9,17 @@
       <li class="list-group-item">${{ product.price }}</li>
       <li class="list-group-item">Only {{ product.amount }} Left</li>
     </ul>
-    <div class="card-body" *ngIf="(user$ | async)?.role === userRole.Admin">
+    <div class="card-body">
       <button
+        *ngIf="user?.role === userRole.User || user?.role === userRole.Admin"
+        type="button"
+        class="btn btn btn-outline-success me-2"
+        (click)="addToCart()"
+      >
+        Add to Cart
+      </button>
+      <button
+        *ngIf="user?.role === userRole.Admin"
         type="button"
         class="btn btn-primary me-2"
         (click)="editProduct(product.id)"
@@ -18,6 +27,7 @@
         Edit
       </button>
       <button
+        *ngIf="user?.role === userRole.Admin"
         class="btn btn-danger"
         type="button"
         (click)="deleteProduct(product.id)"
